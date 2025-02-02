@@ -11,7 +11,7 @@ public class Saucedemo {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000); // Pause for recording visibility
+        Thread.sleep(2000);
 
         // Login
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
