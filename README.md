@@ -41,7 +41,6 @@ Test completed successfully.
 This indicates the test execution was successful.
 
 ## Notes
-- The script uses `Thread.sleep()` for delays between each step to clearly observe the process and verify each action. For faster execution, these delays can be removed and replaced with `WebDriverWait` where necessary.
 - Ensure **ChromeDriver** version matches your **Chrome** browser version.
 
 ## Author
