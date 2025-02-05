@@ -6,49 +6,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Saucedemo {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         // Set up WebDriver
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
 
         // Login
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        Thread.sleep(1000);
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        Thread.sleep(1000);
-        driver.findElement(By.id("login-button")).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys("standard_user");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys("secret_sauce");
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("login-button"))).click();
 
         // Add product to cart and proceed to checkout
-        driver.findElement(By.id("item_4_title_link")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.cssSelector(".btn_inventory")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.id("shopping_cart_container")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.id("checkout")).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("item_4_title_link"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_inventory"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("shopping_cart_container"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout"))).click();
 
         // Enter checkout details
-        driver.findElement(By.id("first-name")).sendKeys("Gayandi");
-        Thread.sleep(1000);
-        driver.findElement(By.id("last-name")).sendKeys("Panditharathna");
-        Thread.sleep(1000);
-        driver.findElement(By.id("postal-code")).sendKeys("71500");
-        Thread.sleep(2000);
-        driver.findElement(By.id("continue")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.id("finish")).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name"))).sendKeys("Gayandi");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last-name"))).sendKeys("Panditharathna");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("postal-code"))).sendKeys("71500");
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("continue"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("finish"))).click();
 
         // Logout
-        driver.findElement(By.id("react-burger-menu-btn")).click();
-        Thread.sleep(2000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-menu-btn"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.id("logout_sidebar_link"))).click();
-        Thread.sleep(2000);
 
         // Close browser
         driver.quit();
